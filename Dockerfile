@@ -1,20 +1,20 @@
-# Utilise une image Node officielle
+# Utilise une image de base Node.js
 FROM node:18
 
-# Crée un dossier pour l’application dans le conteneur
+# Crée un répertoire pour l'application
 WORKDIR /usr/src/app
 
-# Copie les fichiers package.json et package-lock.json
+# Copie le package.json et package-lock.json (si disponible) dans le conteneur
 COPY package*.json ./
 
 # Installe les dépendances
 RUN npm install
 
-# Copie tout le reste du projet
+# Copie tout le code source dans le conteneur
 COPY . .
 
-# Expose le port utilisé par l’application
+# Expose le port 3000
 EXPOSE 3000
 
-# Démarre l’application
+# Commande par défaut pour démarrer l'application
 CMD ["npm", "start"]
